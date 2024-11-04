@@ -1,0 +1,6 @@
+@GerenciadorPlacasApi_HostAddress = http://localhost:5165
+
+GET {{GerenciadorPlacasApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

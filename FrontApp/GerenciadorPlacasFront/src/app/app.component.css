@@ -1,0 +1,39 @@
+.sidebar{
+    display: inline-flex;
+    box-sizing: border-box;
+    width: 100%;
+}
+.content{
+    display: flex;
+    height: 100vh;
+    background-color: blueviolet;
+}
+.father{
+    display: block;
+    height: 100vh;
+}
+.app-menu{
+    display: flex;
+    justify-content: start;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+}
+.saida{
+    background: none; /* Remove o fundo padrão */
+    border: none; /* Remove a borda padrão */
+    padding: 0; /* Remove o padding padrão */
+    cursor: pointer; /* Mostra o cursor de "pointer" */
+    font-size: 24px;
+}
+.esquerda{
+    width: 50%;
+    float: left;
+}
+.direita{
+    width: 50%;
+    float: right;
+    justify-content: end;
+    display: flex;
+    margin: 15px;
+}

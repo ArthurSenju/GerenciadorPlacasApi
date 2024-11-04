@@ -1,0 +1,15 @@
+<!-- app.component.html -->
+<app-inicio *ngIf="!authService.isLoggedIn()"></app-inicio>
+ <div class="father" *ngIf="authService.loggedIn">
+     <div class="sidebar">
+            <div class="esquerda">
+                <app-menu class="app-menu"></app-menu>
+            </div>
+            <div class="direita">
+                <button class="saida"><i class="bi bi-box-arrow-right"></i></button>
+            </div>
+     </div>
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
+ </div>
