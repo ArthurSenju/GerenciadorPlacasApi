@@ -1,13 +1,22 @@
-import { Component, OnInit } from '@angular/core';
 import { PlacaService } from '../../../services/placa.service';
 import { Placa } from '../../../Models/PlacaViewModel';
+import {Component, inject, OnInit} from '@angular/core';
+import {
+  MatDialog,
+  MAT_DIALOG_DATA,
+  MatDialogTitle,
+  MatDialogContent,
+} from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
+import { DetalhesComponent } from '../../Modals/detalhes/detalhes.component';
 
 @Component({
   selector: 'app-lista',
   templateUrl: './lista.component.html'
 })
 export class ListaComponent implements OnInit {
-  placas: Placa[] = [];
+  public placas: Placa[] = [];
+  dialog = inject(MatDialog);
 
   constructor(private placaService: PlacaService) {}
   
@@ -17,8 +26,11 @@ export class ListaComponent implements OnInit {
       this.placas = data;
     });
   }
-
-  verDetalhes(id: number): void {
-    // Navegar para detalhes
+  openDialog() {
+    this.dialog.open(DetalhesComponent, {
+      data: {
+        animal: 'panda',
+      },
+    });
   }
 }

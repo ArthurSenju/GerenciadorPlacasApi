@@ -5,5 +5,6 @@
         public int Id { get; set; }
         public string Digitos { get; set; }
         public EnderecoViewModel? Endereco { get; set; }
+        public CarroViewModel? Carro { get; set; }
     }
 }

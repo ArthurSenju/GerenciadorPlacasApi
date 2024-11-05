@@ -40,6 +40,18 @@ namespace GerenciadorPlacasApi.Controllers
                     enderecoViewModel.Numero = endereco.Numero;
                 }
                 vm.Endereco = enderecoViewModel;
+
+                var carro = _db.Carros.FirstOrDefault(x => x.IdPlaca == item.Id);
+                var carroViewModel = new CarroViewModel();
+                if (carro != null)
+                {
+                    carroViewModel.Id = carro.Id;
+                    carroViewModel.IdPlaca = carro.IdPlaca;
+                    carroViewModel.Modelo = carro.Modelo;
+                    carroViewModel.Cor = carro.Cor;
+                }
+                vm.Carro = carroViewModel;
+
                 listaplacasViewModel.Add(vm);
             }
             return listaplacasViewModel;
