@@ -1,19 +1,13 @@
-import {Component, inject} from '@angular/core';
-import {
-  MatDialog,
-  MAT_DIALOG_DATA,
-  MatDialogTitle,
-  MatDialogContent,
-} from '@angular/material/dialog';
-import {MatButtonModule} from '@angular/material/button';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-detalhes',
-  standalone: true,
-  imports: [MatDialogTitle, MatDialogContent],
   templateUrl: './detalhes.component.html',
   styleUrl: './detalhes.component.css'
 })
 export class DetalhesComponent {
-  data = inject(MAT_DIALOG_DATA);
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {console.log(data)}
+  
+  
 }

@@ -4,6 +4,8 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PlacasModule } from './Components/placas/placas.module'; // Ajuste o caminho conforme necessário
+import { MatDialogModule } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 @NgModule({
   declarations: [
@@ -13,6 +15,8 @@ import { PlacasModule } from './Components/placas/placas.module'; // Ajuste o ca
     PlacasModule, // Certifique-se de que o módulo está sendo importado
     BrowserModule,
     ReactiveFormsModule,
+    MatDialogModule,
+    BrowserAnimationsModule
   ],
   providers: [provideHttpClient(withFetch())],
   bootstrap: [AppComponent]

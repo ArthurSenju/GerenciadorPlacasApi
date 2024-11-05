@@ -1,14 +1,10 @@
 import { PlacaService } from '../../../services/placa.service';
 import { Placa } from '../../../Models/PlacaViewModel';
 import {Component, inject, OnInit} from '@angular/core';
-import {
-  MatDialog,
-  MAT_DIALOG_DATA,
-  MatDialogTitle,
-  MatDialogContent,
-} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import { DetalhesComponent } from '../../Modals/detalhes/detalhes.component';
+import { MatDialog } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-lista',
@@ -16,21 +12,21 @@ import { DetalhesComponent } from '../../Modals/detalhes/detalhes.component';
 })
 export class ListaComponent implements OnInit {
   public placas: Placa[] = [];
-  dialog = inject(MatDialog);
 
-  constructor(private placaService: PlacaService) {}
+  constructor(private placaService: PlacaService, private dialog: MatDialog) {}
   
   ngOnInit(): void {
     this.placaService.getAllPlacas().subscribe((data) => {
-      console.log(data);
       this.placas = data;
     });
   }
-  openDialog() {
-    this.dialog.open(DetalhesComponent, {
-      data: {
-        animal: 'panda',
-      },
+  openDetails(data: Placa) {
+    const dialogRef = this.dialog.open(DetalhesComponent, {
+      data: data,
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog closed: ${result}`);
     });
   }
 }
