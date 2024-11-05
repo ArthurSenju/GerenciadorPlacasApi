@@ -12,8 +12,15 @@ import { AuthService } from '../../services/AuthService';
 export class InicioComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
-  onLogin() {
-    this.authService.login();
-    this.router.navigate(['/home']); // Redireciona para a tela inicial (ou home)
+  entrar() {
+    // Autentica o usuário, altere essa parte conforme sua lógica de autenticação
+    this.authService.login().subscribe((response) => {
+      if (response.success) {
+        this.authService.setLoggedIn(true); // Altera o estado de login no serviço
+        this.router.navigate(['/home']); // Redireciona para a página principal
+      } else {
+        // Trate a falha de login, se necessário
+      }
+    });
   }
 }

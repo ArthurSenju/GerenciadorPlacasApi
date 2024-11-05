@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { MenuComponent } from '../app/Components/menu/menu.component'
 import { CommonModule } from '@angular/common';
 import { AuthService } from './services/AuthService';
 import { InicioComponent } from './Components/Login/inicio.component';
@@ -10,13 +9,31 @@ import { InicioComponent } from './Components/Login/inicio.component';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   standalone: true,
-  imports: [RouterModule, MenuComponent, CommonModule, InicioComponent]  // Importa o RouterModule aqui
+  imports: [RouterModule, CommonModule, InicioComponent]  // Importa o RouterModule aqui
 })
 export class AppComponent {
-  constructor(public authService: AuthService) {}
-  showMenu = false; // Controla a exibição do menu
+  isLoggedIn = false;
+  isMenuOpen = false;
 
-  toggleMenu(show: boolean) {
-    this.showMenu = show; // Atualiza o estado do menu
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+    const menu = document.getElementsByClassName('main-container');
+    const icon = document.getElementById('menu-icon');
+    if(this.isMenuOpen == false){
+      icon?.classList.replace('bi-arrow-left', 'bi-list');
+    }else{
+      icon?.classList.replace('bi-list', 'bi-arrow-left');
+    }
+  }
+
+  constructor(private authService: AuthService) {
+    // Inscreve-se para mudanças no estado de login
+    this.authService.isLoggedIn$.subscribe((loggedIn) => {
+      this.isLoggedIn = loggedIn;
+    });
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }

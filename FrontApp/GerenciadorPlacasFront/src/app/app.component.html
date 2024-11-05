@@ -1,15 +1,19 @@
-<!-- app.component.html -->
-<app-inicio *ngIf="!authService.isLoggedIn()"></app-inicio>
- <div class="father" *ngIf="authService.loggedIn">
-     <div class="sidebar">
-            <div class="esquerda">
-                <app-menu class="app-menu"></app-menu>
-            </div>
-            <div class="direita">
-                <button class="saida"><i class="bi bi-box-arrow-right"></i></button>
-            </div>
-     </div>
-    <div class="content">
-        <router-outlet></router-outlet>
+<!-- Barra superior fixa -->
+<div class="top-bar" *ngIf="isLoggedIn">
+    <i class="bi bi-list menu-icon" id="menu-icon" (click)="toggleMenu()"></i>
+    <button (click)="logout()">Sair</button> <!-- Botão de logout -->
+  </div>
+  
+  <!-- Estrutura principal -->
+  <div class="main-container">
+    <!-- Menu lateral retrátil -->
+    <div class="side-menu" [ngClass]="{ 'menu-open': isMenuOpen }">
+      <p>Conteúdo do Menu</p>
     </div>
- </div>
+  
+    <!-- Conteúdo principal -->
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  
