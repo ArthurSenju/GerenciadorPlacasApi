@@ -1,19 +1,29 @@
-<!-- Barra superior fixa -->
-<div class="top-bar" *ngIf="isLoggedIn">
-    <i class="bi bi-list menu-icon" id="menu-icon" (click)="toggleMenu()"></i>
-    <button (click)="logout()">Sair</button> <!-- Botão de logout -->
-  </div>
-  
-  <!-- Estrutura principal -->
+<div *ngIf="isLoggedIn">
+  <!-- Barra superior fixa -->
+  <div class="top-bar">
+      <i class="bi bi-list menu-icon" id="menu-icon" (click)="toggleMenu()"></i>
+      <button (click)="logout()" class="logout"><i class="bi bi-box-arrow-right"></i></button> <!-- Botão de logout -->
+  </div>  
+    <!-- Estrutura principal -->
   <div class="main-container">
     <!-- Menu lateral retrátil -->
     <div class="side-menu" [ngClass]="{ 'menu-open': isMenuOpen }">
-      <p>Conteúdo do Menu</p>
+      <ul>
+        <li *ngFor="let item of menuItems">
+          <a [routerLink]="item.route">{{ item.label }}</a>
+        </li>
+      </ul>
     </div>
-  
+    
     <!-- Conteúdo principal -->
     <div class="content">
-      <router-outlet></router-outlet>
+        <router-outlet></router-outlet>
     </div>
   </div>
+</div>
+
+  <div *ngIf="!isLoggedIn">
+    <router-outlet></router-outlet> <!-- Somente o login é exibido aqui -->
+  </div>
+  
   

@@ -34,8 +34,10 @@
     color: #fff;
     transition: transform 0.3s ease;
     transform: translateX(-100%);
-    position: absolute;
+    position: fixed;
     z-index: 5;
+    padding: 10px;
+    flex-direction: column;
   }
   
   .side-menu.menu-open {
@@ -49,5 +51,43 @@
     background-color: #f0f0f0;
     margin-left: 0; /* Ajusta caso precise compensar a largura do menu */
     transition: margin-left 0.3s;
+  }
+
+  .logout{
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logout:focus{
+    outline: none; 
+  }
+
+  .logout>i{
+    font-size: 24px;
+    color: #fff;
+  }
+
+  .side-menu ul {
+    list-style-type: none; /* Remove o estilo da lista */
+    padding: 0;
+    margin: 0;
+  }
+  
+  .side-menu li {
+    padding: 10px 0;
+    margin: 0;
+  }
+
+  .side-menu a{
+    color: inherit;       /* Usa a cor do item pai */
+    text-decoration: none; /* Remove o sublinhado */
+    display: block;       /* Faz o link ocupar todo o espaço do `li` */
+    padding: 10px;
+    transition: background-color 0.3s; /* Efeito de hover */
   }
   

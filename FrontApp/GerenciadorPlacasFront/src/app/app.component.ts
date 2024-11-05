@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from './services/AuthService';
 import { InicioComponent } from './Components/Login/inicio.component';
@@ -26,7 +27,7 @@ export class AppComponent {
     }
   }
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
     // Inscreve-se para mudanças no estado de login
     this.authService.isLoggedIn$.subscribe((loggedIn) => {
       this.isLoggedIn = loggedIn;
@@ -35,5 +36,13 @@ export class AppComponent {
 
   logout() {
     this.authService.logout();
+    this.router.navigate(['/']); // Redireciona para a página principal
   }
+
+   // Array com as páginas e suas respectivas rotas
+   menuItems = [
+    { label: 'Página Inicial', route: '/home' },
+    { label: 'Gerenciar Placas', route: '/placas' }
+    // Adicione outros itens conforme necessário
+  ];
 }

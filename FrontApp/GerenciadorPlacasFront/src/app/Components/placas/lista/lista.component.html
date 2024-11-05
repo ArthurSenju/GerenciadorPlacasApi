@@ -1,4 +1,26 @@
 <div>
-
+    <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Placa</th>
+            <th>Endereço</th>
+            <th>CEP</th>
+            <th>Rua</th>
+            <th>Número</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let placa of placas">
+            <td>{{ placa.id }}</td>
+            <td>{{ placa.digitos }}</td>
+            <td>{{ placa.endereco.id }}</td>
+            <td>{{ placa.endereco.cep }}</td>
+            <td>{{ placa.endereco.rua }}</td>
+            <td>{{ placa.endereco.numero || 'N/A' }}</td>
+          </tr>
+        </tbody>
+    </table>
+      
 </div>
   
