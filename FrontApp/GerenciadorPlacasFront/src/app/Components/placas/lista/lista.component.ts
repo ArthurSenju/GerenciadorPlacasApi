@@ -4,7 +4,7 @@ import {Component, inject, OnInit} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import { DetalhesComponent } from '../../Modals/detalhes/detalhes.component';
 import { MatDialog } from '@angular/material/dialog';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista',
@@ -13,10 +13,10 @@ import { MatDialog } from '@angular/material/dialog';
 export class ListaComponent implements OnInit {
   public placas: Placa[] = [];
 
-  constructor(private placaService: PlacaService, private dialog: MatDialog) {}
+  constructor(private placaService: PlacaService, private dialog: MatDialog, private router: Router) {}
   
   ngOnInit(): void {
-    this.placaService.getAllPlacas().subscribe((data) => {
+    this.placaService.GetAllPlacas().subscribe((data) => {
       this.placas = data;
     });
   }
@@ -28,5 +28,13 @@ export class ListaComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog closed: ${result}`);
     });
+  }
+
+  openAlterar(id: number){
+    this.router.navigate([`/placa/alterar/${id}`]);
+  }
+
+  openInserir(){
+    this.router.navigate([`/placa/inserir`]);
   }
 }

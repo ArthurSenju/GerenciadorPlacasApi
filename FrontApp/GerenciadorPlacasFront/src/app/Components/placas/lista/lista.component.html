@@ -1,21 +1,31 @@
-<table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Placa</th>
-        <th>Carro</th>
-        <th>Detalhes</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let placa of placas">
-        <td>{{ placa.id }}</td>
-        <td>{{ placa.digitos }}</td>
-        <td>{{ placa.carro.modelo }}</td>
-        <td>
-          <button mat-button ( click )= "openDialog()"><i class="bi bi-eye"></i></button>
-        </td>
-      </tr>
-    </tbody>
-</table>
+<div class="card">
+  <div class="card-body">
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Placa</th>
+            <th scope="col">Carro</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let placa of placas">
+            <td>{{ placa.id }}</td>
+            <td>{{ placa.digitos }}</td>
+            <td>{{ placa.carro.modelo }}</td>
+            <td style="display: flex; justify-content: space-evenly;">
+              <button class="detalhes" type="button" (click)= "openDetails(placa)"><i class="bi bi-eye"></i></button>
+              <button class="alterar" type="button" (click)= "openAlterar(placa.id)"><i class="bi bi-pen"></i></button>
+              <button class="excluir" type="button" (click)= "openDetails(placa)"><i class="bi bi-trash"></i></button>
+            </td>
+          </tr>
+        </tbody>
+    </table>
   
+  </div>
+
+</div>
+<a class="btn btn-float btn-danger m-btn waves-effect waves-circle" (click)= "openInserir()" style=" bottom: 1.45em; right: 7.25em; position: fixed !important; ">
+  <i class="bi bi-plus-lg"></i>
+</a>

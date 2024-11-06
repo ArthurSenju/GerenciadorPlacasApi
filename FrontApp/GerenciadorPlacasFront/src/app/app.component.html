@@ -10,7 +10,7 @@
     <div class="side-menu" [ngClass]="{ 'menu-open': isMenuOpen }">
       <ul>
         <li *ngFor="let item of menuItems">
-          <a [routerLink]="item.route">{{ item.label }}</a>
+          <a [routerLink]="item.route" (click)="toggleMenu()">{{ item.label }}</a>
         </li>
       </ul>
     </div>

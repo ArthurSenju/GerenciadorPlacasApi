@@ -1,7 +1,26 @@
-<h2 mat-dialog-title>Detalhes</h2>
+<div class="titulo">
+  <h2>Detalhes</h2>
+
+</div>
 <mat-dialog-content>
-  <p>Logradouro: {{ data.logradouro }}</p>
-  <p>CEP: {{ data.cep }}</p>
-  <p>Carro: {{ data.carro.cor }}</p>
-  <p>Modelo: {{ data.carro.modelo }}</p>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Logradouro</th>
+        <th scope="col">Numero</th>
+        <th scope="col">CEP</th>
+        <th scope="col">Bairro</th>
+        <th scope="col">Cor do Carro</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+       <td>{{data.endereco.rua}}</td>
+       <td>{{data.endereco.numero}}</td>
+       <td>{{data.endereco.cep}}</td>
+       <td>{{data.endereco.bairro}}</td>
+       <td>{{data.carro.cor}}</td>
+      </tr>      
+    </tbody>
+  </table>
 </mat-dialog-content>

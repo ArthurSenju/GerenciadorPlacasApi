@@ -1,8 +1,35 @@
-<form>
-    <label for="digitos">Dígitos:</label>
-    <input id="digitos" name="digitos" required />
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <form [formGroup]="placaForm" (ngSubmit)="onSubmit()">
+        <label for="digitos">Digitos: </label>
+        <input class="form-control" id="digitos" type="text" formControlName="digitos" required>
+        
+        <div formGroupName="endereco">
+          <h2>Endereço</h2>
+          <label for="rua">Rua: </label>
+          <input class="form-control" id="rua" type="text" formControlName="rua" required>
+          <label  for="bairro">Bairro: </label>
+          <input class="form-control" id="bairro" type="text" formControlName="bairro">
+          <label for="numero">Numero: </label>
+          <input class="form-control" id="numero" type="text" formControlName="numero">
+          <label for="cep">CEP: </label>
+          <input class="form-control" id="cep" type="text" formControlName="cep" required>
+        </div>
+    
+        <div formGroupName="carro">
+          <h2>Carro</h2>
+          <label for="modelo">Modelo: </label>
+          <input class="form-control" id="modelo" type="text" formControlName="modelo" required>
+          <label for="cor">Cor: </label>
+          <input class="form-control" id="cor" type="text" formControlName="cor">     
+        </div>
+    
+        <p>Complete o formulário para habilitar o botão.</p>
+        <button type="submit" class="btn btn-outline-success" [disabled]="!placaForm.valid">Salvar</button>
+      </form>
   
-    <button type="submit">Salvar</button>
-    <button routerLink="/placas">Cancelar</button>
-  </form>
+    </div>
+  </div>
+</div>
   

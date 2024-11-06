@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PlacasModule } from './Components/placas/placas.module'; // Ajuste o caminho conforme necessário
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
     BrowserModule,
     ReactiveFormsModule,
     MatDialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [provideHttpClient(withFetch())],
   bootstrap: [AppComponent]

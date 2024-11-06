@@ -1,0 +1,12 @@
+h2{
+    margin: 5px;
+    font-size: 35px;
+}
+
+.container{
+   display: flex;
+   justify-content: center;
+}
+.card{
+    width: 75%;
+}
