@@ -5,6 +5,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { DetalhesComponent } from '../../Modals/detalhes/detalhes.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ExcluirComponent } from '../../Modals/excluir/excluir.component';
 
 @Component({
   selector: 'app-lista',
@@ -27,6 +28,24 @@ export class ListaComponent implements OnInit {
   
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog closed: ${result}`);
+    });
+  }
+
+  openExcluir(id: number){
+    const dialogRef = this.dialog.open(ExcluirComponent, {
+      data: id,
+    });
+  
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === 'deleted') { // Verifica se a exclusão foi confirmada
+        this.atualizarLista();
+      }
+    });
+  }
+
+  atualizarLista(): void {
+    this.placaService.GetAllPlacas().subscribe((data) => {
+      this.placas = data;
     });
   }
 

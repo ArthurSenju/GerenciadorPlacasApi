@@ -3,30 +3,29 @@
     <div class="card-body">
       <form [formGroup]="placaForm" (ngSubmit)="onSubmit()">
         <label for="digitos">Digitos: </label>
-        <input class="form-control" id="digitos" type="text" formControlName="digitos" required>
-        
+        <input class="form-control" id="digitos" type="text" formControlName="digitos"  mask="AAA 0A00" (input)="uppercase($event)" required>
         <div formGroupName="endereco">
-          <h2>Endereço</h2>
           <label for="rua">Rua: </label>
-          <input class="form-control" id="rua" type="text" formControlName="rua" required>
-          <label  for="bairro">Bairro: </label>
-          <input class="form-control" id="bairro" type="text" formControlName="bairro">
+          <input class="form-control" id="rua" type="text" formControlName="rua" mask="AAAAAAAAAAAAAAAA" (input)="uppercase($event)" required>
+          <label for="bairro">Bairro: </label>
+          <input class="form-control" id="bairro" type="text" formControlName="bairro" mask="AAAAAAAAAAAAAAAA" (input)="uppercase($event)">
           <label for="numero">Numero: </label>
-          <input class="form-control" id="numero" type="text" formControlName="numero">
+          <input class="form-control" id="numero" type="text" formControlName="numero" mask="0000000" (input)="uppercase($event)">
           <label for="cep">CEP: </label>
-          <input class="form-control" id="cep" type="text" formControlName="cep" required>
+          <input class="form-control" id="cep" type="text" mask="00000-000" placeholder="00000-000" formControlName="cep" required>
         </div>
-    
+
         <div formGroupName="carro">
-          <h2>Carro</h2>
           <label for="modelo">Modelo: </label>
-          <input class="form-control" id="modelo" type="text" formControlName="modelo" required>
+          <input class="form-control" id="modelo" type="text" formControlName="modelo" mask="AAAAAAAAAA" (input)="uppercase($event)" required>
           <label for="cor">Cor: </label>
-          <input class="form-control" id="cor" type="text" formControlName="cor">     
+          <input class="form-control" id="cor" type="text" formControlName="cor" mask="AAAAAAAAAA" (input)="uppercase($event)">
         </div>
+
     
         <p>Complete o formulário para habilitar o botão.</p>
-        <button type="submit" class="btn btn-outline-success" [disabled]="!placaForm.valid">Salvar</button>
+        <button type="submit" class="btn btn-outline-primary" *ngIf="!alterando" [disabled]="!placaForm.valid">SALVAR</button>
+        <button type="submit" class="btn btn-outline-primary" *ngIf="alterando" [disabled]="!placaForm.valid">ALTERAR</button>
       </form>
   
     </div>

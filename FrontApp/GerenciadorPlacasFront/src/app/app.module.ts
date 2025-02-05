@@ -4,9 +4,11 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PlacasModule } from './Components/placas/placas.module'; // Ajuste o caminho conforme necessário
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ToastrModule } from 'ngx-toastr';
+import { provideNgxMask } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -17,10 +19,16 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserModule,
     ReactiveFormsModule,
     MatDialogModule,
+    MatDialog,
+    MatButtonModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-right',
+      timeOut: 3000,
+      preventDuplicates: true
+    })
   ],
-  providers: [provideHttpClient(withFetch())],
+  providers: [provideHttpClient(withFetch()), provideNgxMask()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

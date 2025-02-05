@@ -40,4 +40,13 @@ export class PlacaService {
         })
       );
   }
+
+  Excluir(id: number): Observable<number>{
+    return this.http.get<number>(`${this.apiUrl}/excluir/${id}`).pipe(
+      catchError(error => {
+        console.error('Erro ao buscar a placa', error)
+        return throwError(error);
+      })
+    )
+  }
 }

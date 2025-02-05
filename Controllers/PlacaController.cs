@@ -53,35 +53,74 @@ namespace GerenciadorPlacasApi.Controllers
         [HttpPost ("salvar")]
         public int Salvar([FromBody]PlacaViewModel vm)
         {
-            var model = ViewModelParaModel(vm);
-            _db.Placas.Add(model);
-            _db.SaveChanges();
-
-            var enderecoModel = new Endereco()
+            if (vm.Id != 0)
             {
-               CEP = vm.Endereco.CEP,
-               Rua = vm.Endereco.CEP,
-               Bairro = vm.Endereco.Bairro,
-               Numero = vm.Endereco.Numero,
-               IdPlaca = model.Id
-            };
+                var model = ViewModelParaModel(vm);
+                model.Id = vm.Id;
+                _db.Entry(model).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
 
-            _db.Enderecos.Add(enderecoModel);
-            _db.SaveChanges();
+                var enderecoModel = _db.Enderecos.FirstOrDefault(x => x.IdPlaca == model.Id);
+                enderecoModel.CEP = vm.Endereco.CEP;
+                enderecoModel.Bairro = vm.Endereco.Bairro;
+                enderecoModel.Numero = vm.Endereco.Numero;
+                enderecoModel.Rua = vm.Endereco.Rua;
 
+                _db.Entry(enderecoModel).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
 
-            var carroModel = new Carro()
+                var carroModel = _db.Carros.FirstOrDefault(x => x.IdPlaca == model.Id);
+                carroModel.Cor = vm.Carro.Cor;
+                carroModel.Modelo = vm.Carro.Modelo;
+
+                _db.Entry(carroModel).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                _db.SaveChanges();
+                return model.Id;
+            }
+            else
             {
-                Cor = vm.Carro.Cor,
-                Modelo = vm.Carro.Modelo,
-                IdPlaca = model.Id
-            };
+                var model = ViewModelParaModel(vm);
+                _db.Placas.Add(model);
+                _db.SaveChanges();
 
-            _db.Carros.Add(carroModel);
+                var enderecoModel = new Endereco()
+                {
+                   CEP = vm.Endereco.CEP,
+                   Rua = vm.Endereco.Rua,
+                   Bairro = vm.Endereco.Bairro,
+                   Numero = vm.Endereco.Numero,
+                   IdPlaca = model.Id
+                };
+
+                _db.Enderecos.Add(enderecoModel);
+                _db.SaveChanges();
+
+
+                var carroModel = new Carro()
+                {
+                    Cor = vm.Carro.Cor,
+                    Modelo = vm.Carro.Modelo,
+                    IdPlaca = model.Id
+                };
+
+                _db.Carros.Add(carroModel);
+                _db.SaveChanges();
+
+                return model.Id;
+
+            }
+        }
+
+        [HttpGet ("excluir/{id}")]
+        public int Excluir(int id)
+        {
+            var model = _db.Placas.FirstOrDefault(x => x.Id == id);
+            model.Ativo = false;
+            model.DataExclusao = DateTime.Now;
+            _db.Entry(model).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             _db.SaveChanges();
 
             return model.Id;
         }
+
         protected PlacaViewModel ModelParaViewModel(Placa model)
         {
             var vm = new PlacaViewModel();
@@ -96,6 +135,7 @@ namespace GerenciadorPlacasApi.Controllers
                 enderecoViewModel.CEP = endereco.CEP;
                 enderecoViewModel.Rua = endereco.Rua;
                 enderecoViewModel.Numero = endereco.Numero;
+                enderecoViewModel.Bairro = endereco.Bairro;
             }
             vm.Endereco = enderecoViewModel;
 

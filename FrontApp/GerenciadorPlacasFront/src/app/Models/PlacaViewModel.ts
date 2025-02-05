@@ -3,13 +3,10 @@ export class Placa {
       public id: number,
       public digitos: string,
       public carro: {
-        id: number,
         cor: string,
-        modelo: string,
-        idPlaca: number
+        modelo: string
       },
       public endereco: {
-        id: number,
         rua: string,
         bairro: string,
         cep: string,
