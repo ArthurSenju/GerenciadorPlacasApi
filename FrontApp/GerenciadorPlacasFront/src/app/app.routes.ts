@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { InicioComponent } from './Components/Login/inicio.component';
-import { ListaComponent } from './Components/placas/lista/lista.component';
+import { CameraComponent } from './Components/camera/camera.component';
 import { InserirComponent } from './Components/placas/inserir/inserir.component';
 import { PaginaInicialComponent } from './Components/pagina-inicial/pagina-inicial.component';
 import { AuthGuard } from './Components/auth.guard';
@@ -13,6 +13,7 @@ export const routes: Routes = [
   { path: 'placa/alterar/:id', component: InserirComponent, canActivate: [AuthGuard] },
   { path: 'placa/excluir/:id', component: InserirComponent, canActivate: [AuthGuard] },
   { path: 'placa/inserir', component: InserirComponent, canActivate: [AuthGuard] },
+  { path: 'camera', component: CameraComponent, loadChildren: () => import('./Components/camera/camera.module').then(m => m.CameraModule), canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'login' } 
 ];
 

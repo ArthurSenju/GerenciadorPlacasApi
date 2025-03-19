@@ -42,7 +42,8 @@ export class AppComponent {
    // Array com as páginas e suas respectivas rotas
    menuItems = [
     { label: 'Página Inicial', route: '/home' },
-    { label: 'Gerenciar Placas', route: '/placas' }
+    { label: 'Gerenciar Placas', route: '/placas' },
+    { label: 'Detectar Placas', route: '/camera'}
     // Adicione outros itens conforme necessário
   ];
 }

@@ -29,7 +29,6 @@
             "styles": [
               "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.css",
-              "styles.scss",
               "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [],
@@ -65,6 +64,13 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "ssl": true,
+            "sslKey": "./ssl/localhost-key.pem",
+            "sslCert": "./ssl/localhost.pem",
+            "host": "0.0.0.0",
+            "port": 4200
+          },
           "configurations": {
             "production": {
               "buildTarget": "GerenciadorPlacasFront:build:production"

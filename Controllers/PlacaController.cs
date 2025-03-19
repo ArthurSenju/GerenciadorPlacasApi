@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using GerenciadorPlacasApi.Data;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace GerenciadorPlacasApi.Controllers
 {
@@ -17,6 +18,13 @@ namespace GerenciadorPlacasApi.Controllers
         public PlacaController(AppDbContext db)
         {
             _db = db;
+        }
+
+        [HttpGet("todasParaDeteccao")]
+        public async Task<IActionResult> ObterTodasPlacasParaDeteccao()
+        {
+            var placas = await _db.Placas.Where(x => x.Ativo).Select(p => p.Digitos).ToListAsync();
+            return Ok(placas);
         }
 
         [HttpGet ("{id}")]

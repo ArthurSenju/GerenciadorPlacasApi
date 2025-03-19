@@ -9,13 +9,16 @@ import {MatButtonModule} from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ToastrModule } from 'ngx-toastr';
 import { provideNgxMask } from 'ngx-mask';
+import { CameraModule } from './Components/camera/camera.module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    PlacasModule, // Certifique-se de que o módulo está sendo importado
+    PlacasModule,
+    CameraModule,
     BrowserModule,
     ReactiveFormsModule,
     MatDialogModule,

@@ -1,0 +1,39 @@
+/* Exemplo de estilo para a modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button {
+  margin-top: 10px;
+}
+
+  .video-container {
+    width: 100%;
+    height: 400px;  /* Definindo uma altura fixa para garantir que o vídeo apareça */
+    position: relative;
+    background-color: black; /* Fundo preto para indicar que o vídeo está carregado */
+  }
+  
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* Garante que o vídeo ocupe toda a área da div */
+  }
+  

@@ -1,7 +1,52 @@
-<div class="camera-container">
-    <video #video autoplay playsinline></video>
+<!-- Bloco de erro -->
+<ng-template #errorBlock>
+  <div *ngIf="showModal" class="modal fade show" style="display: block;" tabindex="-1" aria-labelledby="cameraModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="cameraModalLabel">Erro</h5>
+          <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Nenhuma câmera disponível.</p>
+        </div>
+      </div>
+    </div>
   </div>
-  
-  <div *ngIf="placaReconhecida">
-    <p>Placa reconhecida: {{ placaReconhecida }}</p>
+</ng-template>
+
+<!-- Bloco de escolha da câmera -->
+<ng-template #cameraBlock>
+  <div *ngIf="showModal" class="modal fade show" style="display: block;" tabindex="-1" aria-labelledby="cameraModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="cameraModalLabel">Escolha uma Câmera</h5>
+          <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <ul class="list-unstyled">
+            <li *ngFor="let camera of cameras; trackBy: trackByDeviceId" class="mb-2">
+              <button (click)="startCamera(camera.deviceId)" class="btn btn-success w-100 rounded-3">
+                {{ camera.label || 'Câmera desconhecida' }}
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
+  <div *ngIf="!showModal">
+    <video #videoElement autoplay playsinline></video>
+  </div>
+</ng-template>
+
+<!-- Elemento de vídeo onde a câmera será exibida -->
+
+<!-- Mostrar erro ou lista de câmeras -->
+<ng-container *ngIf="noCamerasAvailable; else cameraBlock">
+  <ng-container *ngTemplateOutlet="errorBlock"></ng-container>
+</ng-container>
+
+<!-- Modal para selecionar câmera -->
+<button (click)="openCameraModal()" class="btn btn-primary w-100 rounded-3">Selecionar Câmera</button>
